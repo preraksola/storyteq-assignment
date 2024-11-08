@@ -1,9 +1,10 @@
 <script>
 import SearchBooks from "@/components/SearchBooks.vue";
+import SearchCities from "@/components/SearchCities.vue";
 
 export default {
   name: "HomePage",
-  components: { SearchBooks },
+  components: { SearchCities, SearchBooks },
 
   data() {
     return {
@@ -102,6 +103,7 @@ export default {
   q-tab-panels(v-model="selectedTab" animated)
     q-tab-panel(v-for="tab in tabs" :key="tab.name" :name="tab.name")
       search-books(v-if="tab.name === 'books'")
+      search-cities(v-else-if="tab.name === 'cities'")
 </template>
 
 <style scoped lang="scss"></style>

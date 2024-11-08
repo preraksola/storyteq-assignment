@@ -4,33 +4,33 @@ import { mapGetters } from "vuex";
 import NoDataFound from "@/components/NoDataFound.vue";
 
 export default {
-  name: "SearchBooks",
+  name: "SearchCities",
 
   components: { NoDataFound, SearchInput },
 
   data() {
     return {
-      filteredBooks: null,
+      filteredCities: null,
     };
   },
 
   methods: {
     search(text) {
-      this.filteredBooks = this.books.filter((book) =>
-        book.title.toLowerCase().includes(text.toLowerCase()),
+      this.filteredCities = this.cities.filter((city) =>
+        city.toLowerCase().includes(text.toLowerCase()),
       );
     },
 
     clear() {
-      this.filteredBooks = null;
+      this.filteredCities = null;
     },
   },
 
   computed: {
-    ...mapGetters(["books"]),
+    ...mapGetters(["cities"]),
 
-    noBooks() {
-      return this.filteredBooks?.length === 0;
+    noCities() {
+      return this.filteredCities?.length === 0;
     },
   },
 };
@@ -43,23 +43,22 @@ export default {
       @clear="clear"
     )
 
-  .books.flex.q-pa-md.row.justify-center
+  .cities.flex.q-pa-md.row.justify-center
     transition-group(name="list" tag="div")
       q-list.list(
-        v-if="filteredBooks?.length"
+        v-if="filteredCities?.length"
         bordered
         separator
       )
-        q-item-label.text-right(header) {{ filteredBooks.length }} result(s) found
+        q-item-label.text-right(header) {{ filteredCities.length }} result(s) found
         q-item(
-          v-for="book in filteredBooks"
-          :key="book.title"
+          v-for="city in filteredCities"
+          :key="city"
         )
           q-item-section
-            q-item-label {{ book.title }}
-            q-item-label(caption) Author: {{ book.author }}
+            q-item-label {{ city }}
 
-      no-data-found(v-else-if="noBooks")
+      no-data-found(v-else-if="noCities")
 
 </template>
 
