@@ -2,7 +2,7 @@
 export default {
   name: "SearchInput",
 
-  emits: ["search"],
+  emits: ["search", "clear"],
 
   data() {
     return {
@@ -16,8 +16,15 @@ export default {
 
   methods: {
     search() {
-      if (this.text.length < 3) return;
-      this.$emit("search", this.text);
+      if (this.text?.length >= 3) {
+        this.$emit("search", this.text);
+      } else {
+        this.clear();
+      }
+    },
+
+    clear() {
+      this.$emit("clear");
     },
   },
 };
@@ -34,6 +41,7 @@ export default {
       hint="Type at least 3 characters"
       debounce="500"
       @update:model-value="search"
+      @clear="clear"
     )
       template(v-slot:prepend)
         q-icon(name="search")
