@@ -1,20 +1,11 @@
-<template lang="pug">
-  q-layout(view="lHh Lpr lFf")
-    q-header(elevated)
-      q-toolbar
-        q-toolbar-title Autocomplete Service
-
-
-    q-page-container
-</template>
-
 <script>
 import { ref } from "vue";
+import HomePage from "@/components/HomePage.vue";
 
 export default {
   name: "LayoutDefault",
 
-  components: {},
+  components: { HomePage },
 
   setup() {
     return {
@@ -23,3 +14,14 @@ export default {
   },
 };
 </script>
+
+<template lang="pug">
+  q-layout(view="lHh Lpr lFf")
+    q-header(elevated)
+      q-toolbar
+        q-toolbar-title Autocomplete Service
+
+
+    q-page-container
+      HomePage
+</template>
